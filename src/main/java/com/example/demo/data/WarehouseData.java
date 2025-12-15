@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.data;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.AllArgsConstructor;
