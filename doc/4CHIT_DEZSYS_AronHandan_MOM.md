@@ -82,7 +82,7 @@ Zuerst muss man das Image pullen um ein Container anschließend zu erstellen.
 
 ![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-13-18-08-26-image.png)
 
-Anschließend kann man den Container konfigurieren, hier laut Angabe wird 9092:9092 empfohlen für dich Ports, den Rest kann man außlassen für das Erste.
+Anschließend kann man den Container konfigurieren, hier laut Angabe wird 9092:9092 empfohlen für die Ports, den Rest kann man auslassen für das Erste.
 
 ![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-13-18-09-10-image.png)
 
@@ -142,6 +142,12 @@ Am Zentralrechner wird eine **REST-Schnittstelle** bereitgestellt, über die and
 
 Diese Schnittstelle ermöglicht es, dass zentrale Auswertungen, Berichte oder Dashboards jederzeit mit den neuesten Lagerbeständen versorgt werden, ohne dass man direkt auf einzelne Lager zugreifen muss.
 
+![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-16-14-40-43-image.png)
+
+![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-16-14-41-04-image.png)
+
+![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-16-14-41-16-image.png)
+
 ---
 
 ## Vertiefung
@@ -155,8 +161,8 @@ Durch diese zentrale Sammlung kann der Rechner **alle Lagerstände gleichzeitig 
 
 ### **Logging der Daten bei allen Lagerstandorten und dem Zentralrechner**
 
-Jeder Lagerstandort protokolliert die gesendeten Nachrichten lokal, sodass nachvollziehbar ist, **wann welche Daten verschickt wurden**.  
-Der Zentralrechner loggt ebenfalls alle empfangenen Nachrichten, inklusive Zeitstempel, Lager-ID und Produktinformationen.  
+Jeder Lagerstandort protokolliert die gesendeten Nachrichten lokal, sodass nachvollziehbar ist, **wann welche Daten verschickt wurden**. 
+Der Zentralrechner loggt ebenfalls alle empfangenen Nachrichten, inklusive Zeitstempel, Lager-ID und Produktinformationen. 
 Dieses Logging stellt sicher, dass **alle Übertragungen überprüfbar und nachvollziehbar** sind, falls es zu Problemen oder Fehlern kommt.
 
 ---
@@ -171,6 +177,14 @@ Nachdem der Zentralrechner eine Nachricht eines Lagers verarbeitet hat, sendet e
 
 - So wissen die Lager jederzeit, dass ihre Daten **korrekt angekommen und verarbeitet** wurden.
 
+### Producer
+
+![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-16-14-41-34-image.png)
+
+### Consumer
+
+![](C:\Users\aronh\AppData\Roaming\marktext\images\2025-12-16-14-42-18-image.png)
+
 ---
 
 # Quellenverzeichnis
@@ -181,14 +195,12 @@ Nachdem der Zentralrechner eine Nachricht eines Lagers verarbeitet hat, sendet e
 
 - [Apache Kafka | Getting Started](https://kafka.apache.org/documentation/#gettingStarted)
   
-  https://medium.com/@abhishekranjandev/a-comprehensive-guide-to-integrating-kafka-in-a-spring-boot-application-a4b912aee62e https://spring.io/guides/gs/messaging-jms/  
-  https://medium.com/@mailshine/activemq-getting-started-with-springboot-a0c3c960356e  
-  [Introduction of JMS | JMS | JMS message| JMS api | JMS client | JMS server | JMS Tutorial | JMS Example | Learn JMS](http://www.academictutorials.com/jms/jms-introduction.asp)  
-  [The Java Message Service API](http://docs.oracle.com/javaee/1.4/tutorial/doc/JMS.html#wp84181)  
-  [Java Message Service (JMS)](https://www.oracle.com/java/technologies/java-message-service.html)  
-  [Getting Started with Java Message Service (JMS)](http://www.oracle.com/technetwork/articles/java/introjms-1577110.html)  
-  https://spring.io/guides/gs/messaging-jms  
-  https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-messaging.html  
+  https://medium.com/@abhishekranjandev/a-comprehensive-guide-to-integrating-kafka-in-a-spring-boot-application-a4b912aee62e https://spring.io/guides/gs/messaging-jms/ 
+  https://medium.com/@mailshine/activemq-getting-started-with-springboot-a0c3c960356e 
+  [Introduction of JMS | JMS | JMS message| JMS api | JMS client | JMS server | JMS Tutorial | JMS Example | Learn JMS](http://www.academictutorials.com/jms/jms-introduction.asp) 
+  [The Java Message Service API](http://docs.oracle.com/javaee/1.4/tutorial/doc/JMS.html#wp84181) 
+  [Java Message Service (JMS)](https://www.oracle.com/java/technologies/java-message-service.html) 
+  [Getting Started with Java Message Service (JMS)](http://www.oracle.com/technetwork/articles/java/introjms-1577110.html) 
+  https://spring.io/guides/gs/messaging-jms 
+  https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-messaging.html 
   [Using JMS in Spring Boot](https://dzone.com/articles/using-jms-in-spring-boot-1)
-
-
