@@ -15,10 +15,30 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Kafka-Konfiguration für das Projekt.
+ * <p>
+ * Diese Klasse definiert Producer- und Consumer-Factorys sowie Kafka-Templates für
+ * die Kommunikation mit Kafka. Sie enthält:
+ * <ul>
+ *     <li>Producer für WarehouseData (JSON-Objekte)</li>
+ *     <li>Consumer für Feedback-Strings</li>
+ *     <li>ConcurrentKafkaListenerContainerFactory für Listener</li>
+ * </ul>
+ *
+ * @author Aron Handan
+ */
 @Configuration
 public class KafkaConfig {
 
-    /** PRODUCER für WarehouseData (JSON) */
+    /**
+     * ProducerFactory für WarehouseData.
+     * <p>
+     * Erstellt eine Factory, die JSON-Objekte vom Typ {@link WarehouseData} serialisiert
+     * und an den Kafka-Broker auf "localhost:9092" sendet.
+     *
+     * @return ProducerFactory für String-Keys und WarehouseData-Values
+     */
     @Bean
     public ProducerFactory<String, WarehouseData> warehouseProducerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -28,12 +48,28 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory<>(props);
     }
 
+    /**
+     * KafkaTemplate für WarehouseData.
+     * <p>
+     * Stellt eine Spring KafkaTemplate bereit, um Nachrichten vom Typ {@link WarehouseData}
+     * an Kafka-Themen zu senden.
+     *
+     * @return KafkaTemplate für WarehouseData
+     */
     @Bean
     public KafkaTemplate<String, WarehouseData> warehouseKafkaTemplate() {
         return new KafkaTemplate<>(warehouseProducerFactory());
     }
 
-    /** CONSUMER für Feedback-Strings */
+    /**
+     * ConsumerFactory für Feedback-Strings.
+     * <p>
+     * Erstellt eine Factory für Consumer, die String-Nachrichten empfangen.
+     * Diese Consumer gehören zur Gruppe "warehouse-feedback-group" und
+     * lesen neue Nachrichten ab dem neuesten Offset.
+     *
+     * @return ConsumerFactory für String-Keys und String-Values
+     */
     @Bean
     public ConsumerFactory<String, String> feedbackConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -45,6 +81,15 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
+
+    /**
+     * ConcurrentKafkaListenerContainerFactory für String-Nachrichten.
+     * <p>
+     * Diese Factory wird von Spring verwendet, um Listener-Container für Kafka zu erstellen.
+     * Sie verwendet die {@link #feedbackConsumerFactory()} und erlaubt parallele Listener.
+     *
+     * @return ConcurrentKafkaListenerContainerFactory für String-Nachrichten
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> stringKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
